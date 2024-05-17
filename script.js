@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const postsPerPage = 2; // Number of posts per page
+    const postsPerPage = 5; // Number of posts per page
     let currentPage = 1;
     let totalPosts = 0;
     let posts = [];
