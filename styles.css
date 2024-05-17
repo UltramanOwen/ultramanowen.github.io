@@ -29,12 +29,19 @@ nav ul li a {
     text-decoration: none;
 }
 
+
 .section {
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center; /* Center section content */
     text-align: center; /* Center text content */
+    border: 1px solid #ddd; /* Add border for box effect */
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    margin: 1rem auto; /* Add margin and center box */
+    max-width: 50%; /* Limit width */
+    background-color: #f9f9f9; /* Light background color */
 }
 
 .profile-img {
@@ -57,7 +64,9 @@ nav ul li a {
 .pagination {
     display: flex;
     justify-content: center;
+    align-items: center; /* Center align items vertically */
     margin-top: 2rem;
+    font-size: 1rem; /* Adjust font size if necessary */
 }
 
 .pagination button {
@@ -67,9 +76,23 @@ nav ul li a {
     padding: 0.5rem 1rem;
     margin: 0 0.5rem;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #555;
 }
 
 .pagination button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+#page-info {
+    margin: 0 1rem; /* Space between buttons and page info */
+    padding: 0.5rem 1rem;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }

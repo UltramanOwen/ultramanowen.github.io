@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let posts = [];
 
     const blogPostsContainer = document.getElementById('blog-posts');
+    const firstPageButton = document.getElementById('first-page');
     const prevPageButton = document.getElementById('prev-page');
     const nextPageButton = document.getElementById('next-page');
+    const pageInfo = document.getElementById('page-info');
 
     fetch('posts/posts.json')
         .then(response => response.json())
@@ -15,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalPosts = posts.length;
             displayPosts();
             updateButtons();
+            updatePageInfo();
         })
         .catch(error => console.error('Error fetching posts:', error));
 
@@ -37,15 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateButtons() {
+        firstPageButton.disabled = currentPage === 1;
         prevPageButton.disabled = currentPage === 1;
         nextPageButton.disabled = currentPage === Math.ceil(totalPosts / postsPerPage);
     }
+
+    function updatePageInfo() {
+        pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(totalPosts / postsPerPage)}`;
+    }
+
+    firstPageButton.addEventListener('click', () => {
+        currentPage = 1;
+        displayPosts();
+        updateButtons();
+        updatePageInfo();
+    });
 
     prevPageButton.addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
             displayPosts();
             updateButtons();
+            updatePageInfo();
         }
     });
 
@@ -54,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentPage++;
             displayPosts();
             updateButtons();
+            updatePageInfo();
         }
     });
 });
