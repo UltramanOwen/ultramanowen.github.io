@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updatePageInfo() {
-        pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(totalPosts / postsPerPage)}`;
+        pageInfo.textContent = `${currentPage} of ${Math.ceil(totalPosts / postsPerPage)}`;
     }
 
     firstPageButton.addEventListener('click', () => {
