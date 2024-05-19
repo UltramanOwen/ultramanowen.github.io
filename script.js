@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const postsPerPage = 5; // Number of posts per page
+    const postsPerPage = 5;
     let currentPage = 1;
     let totalPosts = 0;
     let posts = [];
@@ -9,22 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevPageButton = document.getElementById('prev-page');
     const nextPageButton = document.getElementById('next-page');
     const pageInfo = document.getElementById('page-info');
+    const blogSection = document.getElementById('blog');
 
     fetch('posts/posts.json')
         .then(response => response.json())
         .then(data => {
             posts = data;
             totalPosts = posts.length;
-            displayPosts();
-            updateButtons();
-            updatePageInfo();
+            updatePagination();
         })
         .catch(error => console.error('Error fetching posts:', error));
 
     function displayPosts() {
         blogPostsContainer.innerHTML = '';
         const start = (currentPage - 1) * postsPerPage;
-        const end = start + postsPerPage;
+        const end = Math.min(start + postsPerPage, totalPosts);
         const paginatedPosts = posts.slice(start, end);
 
         paginatedPosts.forEach(post => {
@@ -49,28 +48,37 @@ document.addEventListener('DOMContentLoaded', () => {
         pageInfo.textContent = `${currentPage} of ${Math.ceil(totalPosts / postsPerPage)}`;
     }
 
-    firstPageButton.addEventListener('click', () => {
-        currentPage = 1;
+    function updatePagination() {
         displayPosts();
         updateButtons();
         updatePageInfo();
+    }
+
+    function scrollToBlogSection() {
+        blogSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    firstPageButton.addEventListener('click', () => {
+        if (currentPage !== 1) {
+            currentPage = 1;
+            updatePagination();
+            scrollToBlogSection();
+        }
     });
 
     prevPageButton.addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
-            displayPosts();
-            updateButtons();
-            updatePageInfo();
+            updatePagination();
+            scrollToBlogSection();
         }
     });
 
     nextPageButton.addEventListener('click', () => {
         if (currentPage < Math.ceil(totalPosts / postsPerPage)) {
             currentPage++;
-            displayPosts();
-            updateButtons();
-            updatePageInfo();
+            updatePagination();
+            scrollToBlogSection();
         }
     });
 });
