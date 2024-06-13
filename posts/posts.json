@@ -1,5 +1,10 @@
 [
     {
+        "title": "Bootstrap的含义",
+        "date": "2024-06-13",
+        "content": "\"Bootstraps\" refer to the loops sewn at the top of a boot, which can be used to pull the boot on. The phrase \"pull oneself up by one's bootstraps\" metaphorically means to improve one's situation through one's own efforts without any outside help. In computing, \"bootstrapping\" refers to the process of starting up a computer system. This involves loading a small, initial program (bootstrap program) into memory, which then loads a more complex operating system. The term \"boot\" is derived from this process."
+    },
+    {
         "title": "天天下雨，我的心情是如下",
         "date": "2024-06-06",
         "content": "雨声潺潺，像住在溪边，宁愿天天下雨，以为你是因为下雨不来。出自 张爱玲"
